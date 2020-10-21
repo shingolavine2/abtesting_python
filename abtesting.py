@@ -34,6 +34,11 @@ def get_avg(nums):
     :param nums: list of numbers
     :return: average of list
     '''
+    avg = 0
+    for num in nums:
+        avg += num
+    avg = avg/len(nums)
+    return avg
     #TODO: fill me in!
     pass
 
@@ -43,6 +48,14 @@ def get_stdev(nums):
     :param nums: list of numbers
     :return: standard deviation of list
     '''
+    standard_dev = 0
+    average = get_avg(nums)
+    running = 0
+    for num in nums:
+        running += num - average
+    running = running / (len(nums) - 1)
+    standard_dev = sqrt(running)
+    return standard_dev
     #TODO: fill me in!
     pass
 
@@ -53,6 +66,10 @@ def get_standard_error(a, b):
     :param b: list of numbers
     :return: standard error of a and b (see studio 6 guide for this equation!)
     '''
+    term1 = (get_stdev(a) ** 2)/len(a)
+    term2 = (get_stdev(b) ** 2)/len(b)
+    standard_err = sqrt(term1 + term2)
+    return standard_err
     #TODO: fill me in!
     pass
 
@@ -65,6 +82,11 @@ def get_2_sample_df(a, b):
     HINT: you can use Math.round() to help you round!
     '''
     #TODO: fill me in!
+    se = get_2_sample_df(a, b) ** 4
+    term1 = (((get_stdev(a)**2)/len(a))**2)/(len(a)-1)
+    term2 = (((get_stdev(b)**2)/len(b))**2)/(len(b)-1)
+    df = round(se/(term1 + term2))
+    return df
     pass
 
 def get_t_score(a, b):
@@ -147,7 +169,7 @@ def data_to_num_list(s):
     '''
   return list(map(float, s.split()))
 
-"""
+
 # t_test 1:
 a_t1_list = data_to_num_list(a1) 
 b_t1_list = data_to_num_list(b1)
@@ -190,6 +212,5 @@ b_c3_list = data_to_num_list(b_count_3)
 c3_observed_grid = [a_c3_list, b_c3_list]
 print(chi2_value(c3_observed_grid)) # this should be .3119402
 print(perform_chi2_homogeneity_test(c3_observed_grid)) # this should be .57649202
-"""
 
 
