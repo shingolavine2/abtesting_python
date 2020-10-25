@@ -39,8 +39,6 @@ def get_avg(nums):
         avg += num
     avg = avg/len(nums)
     return avg
-    #TODO: fill me in!
-    pass
 
 def get_stdev(nums):
     '''
@@ -56,8 +54,6 @@ def get_stdev(nums):
     running = running / (len(nums) - 1)
     standard_dev = sqrt(running)
     return standard_dev
-    #TODO: fill me in!
-    pass
 
 def get_standard_error(a, b):
     '''
@@ -70,8 +66,6 @@ def get_standard_error(a, b):
     term2 = (get_stdev(b) ** 2)/len(b)
     standard_err = sqrt(term1 + term2)
     return standard_err
-    #TODO: fill me in!
-    pass
 
 def get_2_sample_df(a, b):
     '''
@@ -87,19 +81,24 @@ def get_2_sample_df(a, b):
     term2 = (((get_stdev(b)**2)/len(b))**2)/(len(b)-1)
     df = round(se/(term1 + term2))
     return df
-    pass
 
 def get_t_score(a, b):
+	topterm = get_avg(a) - get_avg(b)
+	botterm = get_standard_error(a, b)
+	tscore = topterm / botterm
+	return tscore
     '''
     Calculates the t-score, given two samples.
     :param a: list of numbers
     :param b: list of numbers
     :return: number representing the t-score given lists a and b (see studio 6 guide for this equation!)
     '''
-    #TODO: fill me in!
-    pass
 
 def perform_2_sample_t_test(a, b):
+	tscore = get_t_score(a, b)
+	df = get_2_sample_df(a, b)
+    pscore = t_dist.cdf(tscore, df)
+    return pscore
     '''
     ** DO NOT CHANGE THE NAME OF THIS FUNCTION!! ** (this will mess with our autograder)
     Calculates a p-value by performing a 2-sample t-test, given two lists of numbers.
@@ -108,8 +107,6 @@ def perform_2_sample_t_test(a, b):
     :return: calculated p-value
     HINT: the t_dist.cdf() function might come in handy!
     '''
-    #TODO: fill me in!
-    pass
 
 
 # [OPTIONAL] Some helper functions that might be helpful in get_expected_grid().
