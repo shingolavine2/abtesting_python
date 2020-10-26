@@ -130,7 +130,7 @@ def row_sum(observed_grid, ele_row):
 	for i in range(4) : 
 		for j in range(4) :  
 			total += observed_grid[i][j] 
-			if i = ele_row:
+			if i == ele_row:
 				return total
 		total = 0
 
@@ -146,7 +146,7 @@ def col_sum(observed_grid, ele_col):
 	for i in range(4) : 
 		for j in range(4) : 
 			total += observed_grid[j][i] 
-			if i = ele_col:
+			if i == ele_col:
 				return total
 		total = 0
 
