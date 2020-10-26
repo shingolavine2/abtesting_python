@@ -206,6 +206,8 @@ def df_chi2(observed_grid):
 	'''
 	#TODO: fill me in!
 	df = (len(observed_grid) - 1)*(len(observed_grid[0]))
+	print(observed_grid)
+	print(df)
 	return df
 
 def chi2_value(observed_grid):
