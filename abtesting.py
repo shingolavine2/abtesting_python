@@ -132,7 +132,7 @@ def row_sum(observed_grid, ele_row):
 		for j in range(len(observed_grid[0])):  
 			total += observed_grid[i][j] 
 		if i == ele_row:
-			print(total)
+			print("rowsum and i is " + str(i) + "ele_row is " + str(ele_row) + " total is " + str(total))
 			return total
 		total = 0
 
@@ -150,7 +150,7 @@ def col_sum(observed_grid, ele_col):
 		for j in range(len(observed_grid)): 
 			total += observed_grid[j][i] 
 		if i == ele_col:
-			print(total)
+			print("colsum and i is " + str(i) + " ele_col is " + str(ele_col) + " total is " + str(total))
 			return total	
 		total = 0
 
