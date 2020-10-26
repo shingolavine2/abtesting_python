@@ -205,7 +205,7 @@ def df_chi2(observed_grid):
 	:return: degrees of freedom of expected counts (see studio 6 guide for this equation!)
 	'''
 	#TODO: fill me in!
-	df = (len(observed_grid) - 1)*(len(observed_grid[0] - 1))
+	df = (len(observed_grid) - 1) * (len(observed_grid[0]) - 1)
 	print(observed_grid)
 	print(df)
 	return df
