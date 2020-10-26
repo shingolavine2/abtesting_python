@@ -172,8 +172,11 @@ def calculate_expected(row_sum, col_sum, tot_sum):
 	:return: number which is expected frequency
 	'''
 	topterm = row_sum * col_sum
+	print(topterm)
 	botterm = tot_sum
+	print(botterm)
 	frequency = topterm / botterm
+	print(frequency)
 	return frequency
 
 def get_expected_grid(observed_grid):
@@ -190,9 +193,7 @@ def get_expected_grid(observed_grid):
 	for row in range(len(observed_grid)):
 		for col in range(len(observed_grid[row])):
 			myrow_sum = row_sum(observed_grid, row)
-			print(myrow_sum)
 			mycol_sum = col_sum(observed_grid, col)
-			print(mycol_sum)
 			expected = calculate_expected(myrow_sum, mycol_sum, mytot_sum)
 			newlist[row][col] = expected
 	print(observed_grid)
