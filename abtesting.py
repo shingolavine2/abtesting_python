@@ -15,19 +15,6 @@ print(1 - chi2.cdf(23.6, 12)) # prints 1 - 0.976 = 0.023 (yay!)
 # NOTE: You should not be using any outside libraries or functions other than the simple operators (+, **, etc)
 # and the specifically mentioned functions (i.e. round, cdf functions...)
 
-def slice_2D(list_2D, start_row, end_row, start_col, end_col):
-    '''
-    Splices a the 2D list via start_row:end_row and start_col:end_col
-    :param list: list of list of numbers
-    :param nums: start_row, end_row, start_col, end_col
-    :return: the spliced 2D list (ending indices are exclsive)
-    '''
-    to_append = []
-    for l in range(start_row, end_row):
-        to_append.append(list_2D[l][start_col:end_col])
-
-    return to_append
-
 def get_avg(nums):
     '''
     Helper function for calculating the average of a sample.
@@ -114,6 +101,74 @@ def perform_2_sample_t_test(a, b):
 # def col_sum(observed_grid, ele_col):
 # def total_sum(observed_grid):
 # def calculate_expected(row_sum, col_sum, tot_sum):
+# numrows = len(input)
+# numcols = len(input[0])
+#
+
+def slice_2D(list_2D, start_row, end_row, start_col, end_col):
+    '''
+    Splices a the 2D list via start_row:end_row and start_col:end_col
+    :param list: list of list of numbers
+    :param nums: start_row, end_row, start_col, end_col
+    :return: the spliced 2D list (ending indices are exclsive)
+    '''
+    to_append = []
+    for l in range(start_row, end_row):
+        to_append.append(list_2D[l][start_col:end_col])
+
+    return to_append
+
+def row_sum(observed_grid, ele_row):
+	'''
+    takes the observed_grid and sums up the row from ele_row
+    :param observed_grid: list of list of numbers
+    :param ele_row: number
+    :return: number which is the sum of the row
+    '''
+    total = 0
+    row = slice_2D(observed_grid, ele_row, ele_row, 0, len(observed_grid[0]))
+    for num in row:
+    	total += num
+    return total
+
+
+def col_sum(observed_grid, ele_col):
+	'''
+    takes the observed_grid and sums up the column from ele_col
+    :param observed_grid: list of list of numbers
+    :param ele_col: number
+    :return: number which is the sum of the column
+    '''
+    total = 0
+    col = slice_2D(observed_grid, 0, len(observed_grid), ele_col, ele_col)
+    for num in col:
+    	total += num
+    return total
+
+def total_sum(observed_grid):
+	'''
+    takes the observed_grid and sums every element in the grid
+    :param observed_grid: list of list of numbers
+    :return: number which is the sum of every element
+    '''
+    total = 0
+    for row in observed_grid:
+        total += row_sum(observed_grid, row)
+    return total
+
+
+def calculate_expected(row_sum, col_sum, tot_sum):
+	'''
+    takes three numbers (row_sum, col_sum, tot_sum) and does math to return expected
+    :param row_sum: number
+    :param col_sum: number
+    :param tot_sum: number
+    :return: number which is expected frequency
+    '''
+    topterm = row_sum * col_sum
+    botterm = tot_sum
+    frequency = topterm / botterm
+    return frequency
 
 def get_expected_grid(observed_grid):
     '''
@@ -124,7 +179,15 @@ def get_expected_grid(observed_grid):
     HINT: To clean up this calculation, consider filling in the optional helper functions below!
     '''
     #TODO: fill me in!
-    pass
+    newlist = [][]
+    mytot_sum = total_sum(observed_grid)
+    for row in range(len(observed_grid)):
+    	for col in range(len(observed_grid[row])):
+    		myrow_sum = row_sum(observed_grid, row)
+    		mycol_sum = col_sum(observed_grid, col)
+    		expected = calculate_expected(myrow_sum, mycol_sum, mytot_sum)
+    		newlist[row][col] = expected
+    return newlist
 
 def df_chi2(observed_grid):
     '''
@@ -133,7 +196,8 @@ def df_chi2(observed_grid):
     :return: degrees of freedom of expected counts (see studio 6 guide for this equation!)
     '''
     #TODO: fill me in!
-    pass
+    df = (len(observed_grid) - 1)*(len(observed_grid[0]))
+    return df
 
 def chi2_value(observed_grid):
     '''
@@ -142,7 +206,14 @@ def chi2_value(observed_grid):
     :return: associated chi^2 value of expected counts (see studio 6 guide for this equation!)
     '''
     #TODO: fill me in!
-    pass
+    total = 0
+    newlist = get_expected_grid(observed_grid)
+    for row in range(len(observed_grid)):
+    	for col in range(len(observed_grid[row])):
+    		topterm = (observed_grid[row][col] - newlist[row][col])**2
+    		botterm = newlist[row][col]
+    		total += topterm/botterm
+    return total
 
 def perform_chi2_homogeneity_test(observed_grid):
     '''
@@ -153,7 +224,9 @@ def perform_chi2_homogeneity_test(observed_grid):
     HINT: the chi2.cdf() function might come in handy!
     '''
     #TODO: fill me in!
-    pass
+    chi2 = chi2_value(observed_grid)
+    df = df_chi2(observed_grid)
+    return 1 - chi2.cdf(chi2, df)
 
 # These commented out lines are for testing your main functions. 
 # Please uncomment them when finished with your implementation and confirm you get the same values :)
