@@ -127,10 +127,12 @@ def row_sum(observed_grid, ele_row):
 	:return: number which is the sum of the row
 	'''
 	total = 0
-	row = slice_2D(observed_grid, ele_row, ele_row, 0, len(observed_grid[0]))
-	for num in range(len(row)):
-		total += row[num]
-	return total
+	for i in range(4) : 
+		for j in range(4) :  
+			total += observed_grid[i][j] 
+			if i = ele_row:
+				return total
+		total = 0
 
 
 def col_sum(observed_grid, ele_col):
@@ -141,11 +143,12 @@ def col_sum(observed_grid, ele_col):
 	:return: number which is the sum of the column
 	'''
 	total = 0
-	col = slice_2D(observed_grid, 0, len(observed_grid), ele_col, ele_col + 1)
-	print(col)
-	for num in range(len(col)):
-		total += col[num]
-	return total
+	for i in range(4) : 
+		for j in range(4) : 
+			total += observed_grid[j][i] 
+			if i = ele_col:
+				return total
+		total = 0
 
 def total_sum(observed_grid):
 	'''
