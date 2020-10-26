@@ -196,6 +196,7 @@ def get_expected_grid(observed_grid):
 			mycol_sum = col_sum(observed_grid, col)
 			expected = calculate_expected(myrow_sum, mycol_sum, mytot_sum)
 			newlist[row][col] = expected
+			print("row " + str(row) + "col " + str(col))
 	return newlist
 
 def df_chi2(observed_grid):
