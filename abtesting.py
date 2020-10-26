@@ -232,7 +232,7 @@ def perform_chi2_homogeneity_test(observed_grid):
 	#TODO: fill me in!
 	chi2 = chi2_value(observed_grid)
 	df = df_chi2(observed_grid)
-	return 1 - chi2.cdf(chi2, df)
+	return (1 - (chi2.cdf(chi2, df)))
 
 # These commented out lines are for testing your main functions. 
 # Please uncomment them when finished with your implementation and confirm you get the same values :)
