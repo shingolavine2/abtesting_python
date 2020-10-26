@@ -187,6 +187,7 @@ def get_expected_grid(observed_grid):
 	#TODO: fill me in!
 	newlist = [ [0] * len(observed_grid[0]) ] * len(observed_grid)
 	mytot_sum = total_sum(observed_grid)
+	print(mytot_sum)
 	for row in range(len(observed_grid)):
 		for col in range(len(observed_grid[row])):
 			myrow_sum = row_sum(observed_grid, row)
