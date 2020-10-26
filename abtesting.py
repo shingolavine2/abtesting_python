@@ -127,8 +127,8 @@ def row_sum(observed_grid, ele_row):
 	:return: number which is the sum of the row
 	'''
 	total = 0
-	for i in range(4) : 
-		for j in range(4) :  
+	for i in range(len(observed_grid)): 
+		for j in range(len(observed_grid[0])):  
 			total += observed_grid[i][j] 
 			if i == ele_row:
 				return total
@@ -143,8 +143,8 @@ def col_sum(observed_grid, ele_col):
 	:return: number which is the sum of the column
 	'''
 	total = 0
-	for i in range(4) : 
-		for j in range(4) : 
+	for i in range(len(observed_grid[0])): 
+		for j in range(len(observed_grid)): 
 			total += observed_grid[j][i] 
 			if i == ele_col:
 				return total
