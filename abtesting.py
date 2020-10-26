@@ -195,6 +195,7 @@ def get_expected_grid(observed_grid):
 			myrow_sum = row_sum(observed_grid, row)
 			mycol_sum = col_sum(observed_grid, col)
 			expected = calculate_expected(myrow_sum, mycol_sum, mytot_sum)
+			print(expected)
 			newlist[row][col] = expected
 	print(observed_grid)
 	print(newlist)
