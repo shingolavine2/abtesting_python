@@ -5,15 +5,46 @@ from scipy.stats import chi2
 from abtesting_test import *
 
 # You can comment out these lines! They are just here to help follow along to the tutorial.
+'''
 print(t_dist.cdf(-2, 20)) # should print .02963
 print(t_dist.cdf(2, 20)) # positive t-score (bad), should print .97036 (= 1 - .2963)
 
 print(chi2.cdf(23.6, 12)) # prints 0.976
 print(1 - chi2.cdf(23.6, 12)) # prints 1 - 0.976 = 0.023 (yay!)
+'''
 
 # TODO: Fill in the following functions! Be sure to delete "pass" when you want to use/run a function!
 # NOTE: You should not be using any outside libraries or functions other than the simple operators (+, **, etc)
 # and the specifically mentioned functions (i.e. round, cdf functions...)
+
+time_completion_data_a = """7462.00
+8960.00
+9442.00
+11718.00
+10093.00
+9547.00
+8059.00
+8010.00
+2652.00
+6634.00
+38259.00"""
+
+time_completion_data_b = """3395.00
+5749.00
+4592.00
+2689.00
+6130.00
+19172.00
+207046.00
+40336.00
+408445.00
+296873.00
+9243.00
+11597.00"""
+
+return_rate_a = """4	7"""
+
+return_rate_b = """5	7"""
 
 def get_avg(nums):
 	'''
@@ -248,7 +279,21 @@ def data_to_num_list(s):
 	'''
   return list(map(float, s.split()))
 
+# t_test on completion data
+a_completion_list = data_to_num_list(time_completion_data_a)
+b_completion_list = data_to_num_list(time_completion_data_b)
+print("T test data for completion time: ")
+print("t_score: " + str(get_t_score(a_completion_list, b_completion_list)))
+print("p value: " + str(perform_2_sample_t_test(a_completion_list, b_completion_list)))
 
+# chi2_test on return rate data
+a_return_list = data_to_num_list(return_rate_a)
+b_return_list = data_to_num_list(return_rate_b)
+return_observed_grid = [a_return_list, b_return_list]
+print("Chi2_test : " + str(chi2_value(return_observed_grid)))
+print("Chi2_homogeneity_test: " + str(perform_chi2_homogeneity_test(return_observed_grid)))
+
+'''
 # t_test 1:
 a_t1_list = data_to_num_list(a1) 
 b_t1_list = data_to_num_list(b1)
@@ -291,5 +336,5 @@ b_c3_list = data_to_num_list(b_count_3)
 c3_observed_grid = [a_c3_list, b_c3_list]
 print("Should be .3119402: " + str(chi2_value(c3_observed_grid))) # this should be .3119402
 print("Should be .57649202: " + str(perform_chi2_homogeneity_test(c3_observed_grid))) # this should be .57649202
-
+'''
 
