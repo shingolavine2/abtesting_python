@@ -282,8 +282,6 @@ def data_to_num_list(s):
 # t_test on completion data
 a_completion_list = data_to_num_list(time_completion_data_a)
 b_completion_list = data_to_num_list(time_completion_data_b)
-print(a_completion_list)
-print(b_completion_list)
 print("T test data for completion time: ")
 print("t_score: " + str(get_t_score(a_completion_list, b_completion_list)))
 print("p value: " + str(perform_2_sample_t_test(a_completion_list, b_completion_list)))
@@ -291,8 +289,6 @@ print("p value: " + str(perform_2_sample_t_test(a_completion_list, b_completion_
 # chi2_test on return rate data
 a_return_list = data_to_num_list(return_rate_a)
 b_return_list = data_to_num_list(return_rate_b)
-print(a_return_list)
-print(b_return_list)
 return_observed_grid = [a_return_list, b_return_list]
 print("Chi2_test : " + str(chi2_value(return_observed_grid)))
 print("Chi2_homogeneity_test: " + str(perform_chi2_homogeneity_test(return_observed_grid)))
